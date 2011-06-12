@@ -308,3 +308,14 @@ exports.testCtrl = function(test) {
 	
 	test.done();
 };
+
+exports.multiReturn = function(test) {
+  var mock = nm.mock("foo").returns(1);
+  mock.mock("foo").returns(2);
+
+  test.equal(mock.foo(), 1, "good first return");
+  test.equal(mock.foo(), 2, "good second return");
+  
+  test.done();
+}
+
