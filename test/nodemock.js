@@ -308,3 +308,40 @@ exports.testCtrl = function(test) {
 	
 	test.done();
 };
+
+exports.testPartialCompareBug1 = function (test){
+	
+	test.throws(function (){
+		var mock = nm.mock('foo').takes({hi: 1, bye: 2000},2,3)
+		mock.foo({},2,3) //should throw because bye: 2000 is not present
+	})
+	
+	test.done()
+}
+
+exports.testPartialCompareBug2 = function (test){
+	
+	test.throws(function (){
+		var mock = nm.mock('foo').takes({hi: 1, bye: 2000},2,3)
+		mock.foo({hi: 1},2,3) //should throw because bye: 2000 is not present
+		mock.foo({},2,3) //should throw because bye: 2000 is not present
+	})
+	
+	test.done()
+}
+
+exports.testPartialCompare = function (test){
+	
+	test.doesNotThrow(function (){
+		var mock = nm.mock('foo').takes({hi: 1},2,3)
+		mock.foo({hi: 1, bye: 2000},2,3) //should throw because bye: 2000 is not present
+	})
+	
+	test.throws(function (){
+		var mock = nm.mock('foo').takes({hi: 1},2,3)
+		mock.foo({},2,3) //should throw because bye: 2000 is not present
+	})
+	
+	test.done()
+	
+}
