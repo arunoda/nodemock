@@ -186,6 +186,64 @@ exports.testCallbackWithoutArgs = function(test) {
 	test.done();
 };
 
+exports.testCallbackWithCallhook = function(test) {
+	
+	var hook = function(call){
+		call();
+	};
+	var mock = nm.mock("foo").takes(10, function(){}).callhook(hook).calls(1);
+	test.expect(2);
+	mock.foo(10, function(a, b) {
+		test.equals(a, undefined);
+		test.equals(b, undefined);
+	});
+
+	test.done();
+};
+
+exports.testCallbackWithCallhookAndAssertion = function(test) {
+	
+	var mock = nm.mock("foo").takes(10, function(){}).callhook(function(call) {
+		mock.assert();
+		call();
+	}).calls(1);
+	test.expect(2);
+	mock.foo(10, function(a, b) {
+		test.equals(a, undefined);
+		test.equals(b, undefined);
+	});
+
+	test.done();
+};
+
+exports.testCallbackWithCallhookAndFailedAssertion = function(test) {
+	
+	var mock = nm.mock("foo").takes(10, function(){}).callhook(function(call) {
+		mock.assert();
+		call();
+	}).calls(1);
+	test.throws(function() {
+		mock.foo(9, function(a, b) {
+		  test.equals(a, undefined);
+		  test.equals(b, undefined);
+	  });
+	});
+
+	test.done();
+};
+
+exports.testCallbackWithCallhookCallNotFired = function(test) {
+	
+	var mock = nm.mock("foo").takes(10, function(){}).callhook(function(call) {
+		mock.assert();
+	}).calls(1);
+	mock.foo(10, function() {
+		test.fail();
+	});
+
+	test.done();
+};
+
 exports.testMockAgain = function(test) {
 	
 	var mock = nm.mock("foo").takes(10, 20).returns(30);
