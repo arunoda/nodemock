@@ -47,7 +47,7 @@ Usage
 ### Creating a mock with callback support
 	var mocked = nodemock.mock("foo").takes(20, function(){}).calls(1, [30, 40]);
 	
-	mockes.foo(20, function(num, arr) {
+	mocked.foo(20, function(num, arr) {
 		console.log(num); //prints 30
 		console.log(arr); //prints 40
 	});
