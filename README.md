@@ -57,6 +57,28 @@ Usage
 		with the parameters 30 and 40 respectively. 
 	*/
 
+### Executing arbitrary function prior to calling the callback
+Sometimes we need to execute code in the testing environment prior to executing the 
+callback but after the mock is called.
+	
+	var doSomething = function(call) {
+		//... do stuff
+		call(); //continue with normal callback support as above
+	};
+	var mocked = nodemock.mock("foo").takes(20, function(){}).callhook( doSomething )
+	  .calls(1, [30, 40]);
+	
+	mocked.foo(20, function(num, arr) {
+		console.log(num); //prints 30
+		console.log(arr); //prints 40
+	});
+
+	/*
+	  doSomething callhook is given call param that you should call if you want
+	  to continue execution as normal and invoke the callback
+	*/
+
+
 ### Controlling callbacks
 With the asynchronous nature of NodeJS(and brower with AJAX too) it'll be great if we can control the execution of the callback in the testing environment. And `ctrl()` of nodemock helps that
 
