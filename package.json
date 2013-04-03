@@ -1,25 +1,39 @@
 {
-    "name": "nodemock",
-    "version": "0.2.17",
+    "name": "mockingbird",
+    "version": "0.3.0",
     "directories": {
         "lib": "./lib"
     },
-    "main": "./lib/nodemock",
+    "main": "./lib/mockingbird",
     "description": "Simple Yet Powerful Mocking Framework for NodeJs",
     "author": "Arunoda Susiripala <arunoda.susiripala@gmail.com>",
-    "homepage": "https://github.com/arunoda/nodemock",
+    "homepage": "https://github.com/oscarrenalias/mockingbird",
+    "contributors": [
+    {
+        "name": "Oscar Renalias", 
+        "email": "oscar@renalias.net"
+    }
+        ],
+    "scripts": {
+        "test": "grunt test"
+    },
     "licenses": [
         {
             "type": "The MIT License",
             "url": "http://www.opensource.org/licenses/mit-license.php"
         }
     ],
-    
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "grunt-contrib-jshint": "~0.3.0",
+    "grunt-contrib-nodeunit": "~0.1.2",
+    "nodeunit": "= 0.7.4"
+  },        
     "repository" :
     {
         "type" : "git",
-        "url" : "git@github.com:arunoda/nodemock.git"
+        "url" : "https://github.com/oscarrenalias/mockingbird.git"
     },
 
-    "tags" : ["mock", "unit", "testing", "nodemock"]
+    "tags" : ["mock", "unit", "testing", "nodemock", "mockingbird"]
 }
