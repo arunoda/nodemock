@@ -1,3 +1,8 @@
+Note: this project is now deprecated and no longer maintanined 
+==================================================================
+
+Changes were recently merged in Nodemock and therefore this fork is no longer necessary. Please refer to the new home of the [Nodemock](https://github.com/realistschuckle/nodemock) information from now on.
+
 Mockingbird - A NodeMock fork
 =============================
 
